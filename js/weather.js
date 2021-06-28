@@ -5,7 +5,7 @@ const descElement = document.querySelector('.temperature-description p');
 // App data
 const weather = {};
 weather.temperature = {
-  unit: 'fahrenheidt',
+    unit: 'fahrenheidt',
 };
 
 // Change to 'F' for Fahrenheit
@@ -21,38 +21,38 @@ setPosition();
 function setPosition(position) {
   // Here you can change your position
   // You can use https://www.latlong.net/ to get it! (I use San Francisco as an example)
-  let latitude = 44.9778;
-  let longitude = -93.2650;
+    let latitude = 44.9778;
+    let longitude = -93.2650;
 
-  getWeather(latitude, longitude);
+    getWeather(latitude, longitude);
 }
 
 // Get the Weather data
 function getWeather(latitude, longitude) {
-  let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+    let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
 
-  console.log(api);
+    console.log(api);
 
-  fetch(api)
-    .then(function (response) {
-      let data = response.json();
-      return data;
-    })
-    .then(function (data) {
-      let celsius = Math.floor(data.main.temp - KELVIN);
-      weather.temperature.value =
-        tempUnit == 'C' ? celsius : (celsius * 9) / 5 + 32;
-      weather.description = data.weather[0].description;
-      weather.iconId = data.weather[0].icon;
-    })
+    fetch(api)
+        .then(function (response) {
+        let data = response.json();
+        return data;
+        })
+        .then(function (data) {
+        let celsius = Math.floor(data.main.temp - KELVIN);
+        weather.temperature.value =
+            tempUnit == 'C' ? celsius : (celsius * 9) / 5 + 32;
+        weather.description = data.weather[0].description;
+        weather.iconId = data.weather[0].icon;
+        })
     .then(function () {
-      displayWeather();
+        dislayWeather();
     });
 }
 
 // Display Weather info
 function displayWeather() {
-  iconElement.innerHTML = `<img src="icons/OneDark/${weather.iconId}.png"/>`;
-  tempElement.innerHTML = `${weather.temperature.value}°<span class="darkfg">${tempUnit}</span>`;
-  descElement.innerHTML = weather.description;
+    iconElement.innerHTML = `<img src="icons/OneDark/${weather.iconId}.png"/>`;
+    tempElement.innerHTML = `${weather.temperature.value}°<span class="darkfg">${tempUnit}</span>`;
+    descElement.innerHTML = weather.description;
 }
