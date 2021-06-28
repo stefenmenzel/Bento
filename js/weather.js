@@ -19,8 +19,8 @@ const key = 'f4693885c44f92b02973de179262c421';
 setPosition();
 
 function setPosition(position) {
-  // Here you can change your position
-  // You can use https://www.latlong.net/ to get it! (I use San Francisco as an example)
+    // Here you can change your position
+    // You can use https://www.latlong.net/ to get it! (I use San Francisco as an example)
     let latitude = 44.9778;
     let longitude = -93.2650;
 
@@ -34,19 +34,19 @@ function getWeather(latitude, longitude) {
     console.log(api);
 
     fetch(api)
-        .then(function (response) {
+    .then(function (response) {
         let data = response.json();
         return data;
-        })
-        .then(function (data) {
+    })
+    .then(function (data) {
         let celsius = Math.floor(data.main.temp - KELVIN);
         weather.temperature.value =
-            tempUnit == 'C' ? celsius : (celsius * 9) / 5 + 32;
+        tempUnit == 'C' ? celsius : (celsius * 9) / 5 + 32;
         weather.description = data.weather[0].description;
         weather.iconId = data.weather[0].icon;
-        })
+    })
     .then(function () {
-        dislayWeather();
+        displayWeather();
     });
 }
 
